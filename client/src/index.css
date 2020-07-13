@@ -1,0 +1,19 @@
+#header {
+    background-color: #36cf3c;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 25px;
+    padding: 10px;
+}
+  
+.input-group {
+   margin: 5px; 
+}
+
+#expense-text {
+    margin: 5px; 
+}
+
+#amount-text {
+    margin: 5px; 
+}
