@@ -3,37 +3,36 @@ const Budget = require('../models/budget')
 
 
 
-router.get('/budget', (request, response, next) => {
-  
+router.get('/budget/:budget', (request, response, next) => {
+  const budgetId = request.params.budget;
+
   Budget
-      .find({})
-      .exec((error, event) => {
-
-    if (error) return response.send(error.message);
-
-    response.send(Budget);
-  })
-  
-})
-
-
-
-// // creates a new budget
-// router.post('/budget', (request, response, next) => {
-//   let newProduct = new Product();
-
-//   newProduct.category = req.body.category;
-//   newProduct.name = req.body.name;
-//   newProduct.price = req.body.price;
-//   newProduct.image = req.body.image;
-//   newProduct.reviews = [];
-
-//   newProduct.save((err, prod) => {
-//     if (err) throw err
+  .findById(budgetId, (error, budget) => {
+    if (error) return next(error)
     
-//   })
-//   res.send(prod);
-// });
+      response.send(budget);
+    
+  })
+});
+
+
+
+// creates a new budget
+router.post('/budget', (request, response, next) => {
+  let newBudget = new Budget();
+
+  newBudget.incomeAmount = 4500;
+  newBudget.expenseCategory = "Mortgage";
+  newBudget.expenseAmount = 1500;
+  newBudget.goalAmount = 6000;
+  
+
+  newBudget.save((error, budget) => {
+    if (error) throw error
+    
+  })
+  response.send(newBudget);
+});
 
 
 

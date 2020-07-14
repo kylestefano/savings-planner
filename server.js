@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 
-mongoose.connect('mongodb://localhost/products', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/budget', {useNewUrlParser: true})
 
 const app = express()
 
