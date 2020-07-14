@@ -17,6 +17,12 @@ class InputForm extends Component {
        <form class="search-form">
          <div class="form-group">
          <Row className="mb-6 justify-content-md-center">
+
+            <div class="input-group">
+            <div className="justify-content-md-center"><h4 id="income-item" >Monthly Income:  </h4></div>
+            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
+            </div>
+
             <div class="input-group">
             <div><h4 id="expense-item" >Expense:  </h4></div>
             <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
