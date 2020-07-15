@@ -3,14 +3,41 @@ import { Link } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../index.css";
+import { createBudget } from "../actions/index.js";
+import { bindActionCreators } from "redux";
 
 class InputForm extends Component {
     constructor(props) {
       super(props);
+      
+        this.state = {
+            income: "",
+            expenseCategoryOne: "",
+            expenseAmountOne: "",
+            expenseCategoryTwo: "",
+            expenseAmountTwo: "",
+            goal: "",
+        }
     }
-  
    
-  
+    submitForm() {
+        if (this.state.income && this.state.goal && this.state.expenseCategoryOne && this.state.expenseAmountOne) {
+            const budgetData = {
+                income: this.state.income,
+                expenses: [
+                    {category: this .state.catetgoryOne,
+                     amount: this.state.amountOne},
+                    {category: this .state.catetgoryTwo,
+                     amount: this.state.amountTwo}
+                ],
+                goal: this.state.goal,
+            }
+          this.props.createBudget(budgetData);
+
+        } else alert("Please fill out income, expenses and goal");
+      }
+
+
     renderForm(data) {
       return (
         <div>
@@ -19,84 +46,69 @@ class InputForm extends Component {
          <Row className="mb-6 justify-content-md-center">
 
             <div class="input-group">
-            <div className="justify-content-md-center"><h4 id="income-item" >Monthly Income:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
+            <div className="justify-content-md-center">
+                <h4 id="income-item" >Monthly Income ($):  </h4>
+            </div>
+            <div class= "col-md-4">
+                <input type="number" id="income-input" class="form-control" placeholder="" onChange= {event => {this.setState({ income: event.target.value })}}></input>
+            </div>
             </div>
 
+            <br></br>
+            <br></br>
+            <br></br>
+
             <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div class= "col-md-4">
+                <input type="text" id="category-input" class="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryOne: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div class= "col-md-2">
+                <input type="number" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ expenseAmountOne: event.target.value })}}></input>
+            </div>
             </div>
             
              
             <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div class= "col-md-4">
+                <input type="text" id="category-input" class="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryTwo: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div class= "col-md-2">
+                <input type="number" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ expenseAmountTwo: event.target.value })}}></input>
+            </div>
             </div>
 
-            <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            </div>
+                       
+            
+            <br></br>
+            <br></br>
+            <br></br>
 
             <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
+            <div className="justify-content-md-center">
+                <h4 id="savings-item" >Target Savings Amount ($):  </h4>
+                </div>
+            <div class= "col-md-4">
+                <input type="number" id="item-input" class="form-control" placeholder="" value = {this.state.goal} onChange= {event => {this.setState({ goal: event.target.value })}}></input>
+                </div>
             </div>
 
-            <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            </div>
-
-            <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            </div>
-
-            <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            </div>
-
-            <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            </div>
-
-            <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            </div>
-
-            <div class="input-group">
-            <div><h4 id="expense-item" >Expense:  </h4></div>
-            <div class= "col-md-4"><input type="text" id="item-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            <div><h4 id="expense-amount" >Amount:  </h4></div>
-            <div class= "col-md-2"><input type="text" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ search: event.target.value})}}></input></div>
-            </div>
         </Row>
+        
                      
         </div>
-            <button id="search-button" type="button" class="btn btn-dark" onClick= {event=> {this.handleClickEvent(event)}}>Submit</button>
+            <button id="tag-submit" type="button" class="btn btn-dark" onClick= {this.submitForm.bind(this)}>Submit</button>
                      
        </form>
      </div>
@@ -123,7 +135,7 @@ class InputForm extends Component {
   }
   
   function mapDispatchToProps(dispatch) {
-    
+    return bindActionCreators({ createBudget }, dispatch);
   }
   
   export default connect(mapStateToProps, mapDispatchToProps)(InputForm);

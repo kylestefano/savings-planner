@@ -1,39 +1,30 @@
 import axios from 'axios'
 
-const ROOT_URL = "http://localhost:8000/products";
+const ROOT_URL = "http://localhost:8000/budget";
 
-export const FETCH_PRODUCTS = "FETCH_PRODUCTS";
+export const CREATE_BUDGET = "CREATE_BUDGET";
 
 
-export function fetchProducts (query = {}, searchInput) {
+export function createBudget (income, expenseCategoryOne, expenseAmountOne, expenseCategoryTwo, expenseAmountTwo, goal) {
 
-    let pageSort = "";
-    let categoryTerm = "";
-    let searchTerm = "";
-    let priceSort = "";
+    let url = `${ROOT_URL}/`;
     
-    if (query.page) {
-        pageSort = query.page;
-    }
-
-    if (query.category) {
-        categoryTerm = query.category;
-    }
-
-    if (query.price) {
-        priceSort = query.price
-    }
-
-    if (searchInput) {
-        searchTerm = searchInput;
-    }
-
-
-    let url = `${ROOT_URL}?page=${pageSort}&category=${categoryTerm}&price=${priceSort}&search=${searchTerm}`;
-    const request = axios.get(url)
+    const request = axios({
+        method: "post",
+        url: url,
+        data: {
+            income: income,
+            expenseCategoryOne: expenseCategoryOne,
+            expenseAmountOne: expenseAmountOne,
+            expenseCategoryTwo: expenseCategoryTwo,
+            expenseAmountTwo: expenseAmountTwo,
+            goal: goal,
+        }
+    })
+    debugger
     console.log('Request', request);
     return {
-        type: FETCH_PRODUCTS,
-        payload: request
+        type: CREATE_BUDGET,
+        payload: request,
     };
 }

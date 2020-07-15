@@ -3,8 +3,8 @@ const Budget = require('../models/budget')
 
 
 
-router.get('/budget/:budget', (request, response, next) => {
-  const budgetId = request.params.budget;
+router.get('/budget/:budgetId', (request, response, next) => {
+  const budgetId = request.params.budgetId;
 
   Budget
   .findById(budgetId, (error, budget) => {
@@ -21,9 +21,10 @@ router.get('/budget/:budget', (request, response, next) => {
 router.post('/budget', (request, response, next) => {
   let newBudget = new Budget();
 
-  newBudget.incomeAmount = 4500;
-  newBudget.expenseCategory = "Mortgage";
-  newBudget.expenseAmount = 1500;
+  newBudget.incomeAmount = request.body.income;
+  newBudget.expenses = [{"category": "", "amount": }]
+  // newBudget.expenseCategory = "Mortgage";
+  // newBudget.expenseAmount = 1500;
   newBudget.goalAmount = 6000;
   
 

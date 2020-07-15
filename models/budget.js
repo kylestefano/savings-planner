@@ -3,8 +3,9 @@ const Schema = mongoose.Schema
 
 const budgetSchema = new Schema({
   incomeAmount: Number,
-  expenseCategory: String,
-  expenseAmount: Number,
+  expenses: Array,
+  // expenseCategory: String,
+  // expenseAmount: Number,
   goalAmount: Number,
   })
   
