@@ -21,11 +21,11 @@ router.get('/budget/:budgetId', (request, response, next) => {
 router.post('/budget', (request, response, next) => {
   let newBudget = new Budget();
 
-  newBudget.incomeAmount = request.body.income;
-  newBudget.expenses = [{"category": "", "amount": }]
+  newBudget.incomeAmount = request.body.incomeAmount;
+  newBudget.expenses = request.body.expenses;
   // newBudget.expenseCategory = "Mortgage";
   // newBudget.expenseAmount = 1500;
-  newBudget.goalAmount = 6000;
+  newBudget.goalAmount = request.body.goalAmount;
   
 
   newBudget.save((error, budget) => {

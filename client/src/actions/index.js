@@ -5,23 +5,17 @@ const ROOT_URL = "http://localhost:8000/budget";
 export const CREATE_BUDGET = "CREATE_BUDGET";
 
 
-export function createBudget (income, expenseCategoryOne, expenseAmountOne, expenseCategoryTwo, expenseAmountTwo, goal) {
+export function createBudget (budgetData) {
 
     let url = `${ROOT_URL}/`;
     
     const request = axios({
         method: "post",
         url: url,
-        data: {
-            income: income,
-            expenseCategoryOne: expenseCategoryOne,
-            expenseAmountOne: expenseAmountOne,
-            expenseCategoryTwo: expenseCategoryTwo,
-            expenseAmountTwo: expenseAmountTwo,
-            goal: goal,
-        }
+        data: budgetData
+        
     })
-    debugger
+    
     console.log('Request', request);
     return {
         type: CREATE_BUDGET,

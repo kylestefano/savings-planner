@@ -11,26 +11,26 @@ class InputForm extends Component {
       super(props);
       
         this.state = {
-            income: "",
+            incomeAmount: "",
             expenseCategoryOne: "",
             expenseAmountOne: "",
             expenseCategoryTwo: "",
             expenseAmountTwo: "",
-            goal: "",
+            goalAmount: "",
         }
     }
    
     submitForm() {
-        if (this.state.income && this.state.goal && this.state.expenseCategoryOne && this.state.expenseAmountOne) {
+        if (this.state.incomeAmount && this.state.goalAmount && this.state.expenseCategoryOne && this.state.expenseAmountOne) {
             const budgetData = {
-                income: this.state.income,
+                incomeAmount: this.state.incomeAmount,
                 expenses: [
-                    {category: this .state.catetgoryOne,
-                     amount: this.state.amountOne},
-                    {category: this .state.catetgoryTwo,
-                     amount: this.state.amountTwo}
+                    {category: this .state.expenseCategoryOne,
+                     amount: this.state.expenseAmountOne},
+                    {category: this .state.expenseCategoryTwo,
+                     amount: this.state.expenseAmountTwo}
                 ],
-                goal: this.state.goal,
+                goalAmount: this.state.goalAmount,
             }
           this.props.createBudget(budgetData);
 
@@ -50,7 +50,7 @@ class InputForm extends Component {
                 <h4 id="income-item" >Monthly Income ($):  </h4>
             </div>
             <div class= "col-md-4">
-                <input type="number" id="income-input" class="form-control" placeholder="" onChange= {event => {this.setState({ income: event.target.value })}}></input>
+                <input type="number" id="income-input" class="form-control" placeholder="" onChange= {event => {this.setState({ incomeAmount: event.target.value })}}></input>
             </div>
             </div>
 
@@ -100,7 +100,7 @@ class InputForm extends Component {
                 <h4 id="savings-item" >Target Savings Amount ($):  </h4>
                 </div>
             <div class= "col-md-4">
-                <input type="number" id="item-input" class="form-control" placeholder="" value = {this.state.goal} onChange= {event => {this.setState({ goal: event.target.value })}}></input>
+                <input type="number" id="item-input" class="form-control" placeholder="" value = {this.state.goal} onChange= {event => {this.setState({ goalAmount: event.target.value })}}></input>
                 </div>
             </div>
 
