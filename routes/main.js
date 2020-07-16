@@ -3,7 +3,7 @@ const Budget = require('../models/budget')
 
 
 
-router.get('/budget/:budgetId', (request, response, next) => {
+router.get('/budget/:userId', (request, response, next) => {
   const budgetId = request.params.budgetId;
 
   Budget

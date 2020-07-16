@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../index.css";
 
 class Header extends Component {
@@ -18,7 +18,7 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-    
+  return { };
   }
   
 

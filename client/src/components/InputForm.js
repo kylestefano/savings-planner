@@ -1,26 +1,36 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Row, Col, Container } from "react-bootstrap";
+// import { Link } from "react-router-dom";
+import { Row, Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../index.css";
 import { createBudget } from "../actions/index.js";
 import { bindActionCreators } from "redux";
 
+
 class InputForm extends Component {
-    constructor(props) {
-      super(props);
-      
-        this.state = {
-            incomeAmount: "",
-            expenseCategoryOne: "",
-            expenseAmountOne: "",
-            expenseCategoryTwo: "",
-            expenseAmountTwo: "",
-            goalAmount: "",
-        }
+  constructor(props) {
+    super(props);
+    
+    
+    this.state = {
+      incomeAmount: "",
+      expenseCategoryOne: "",
+      expenseAmountOne: "",
+      expenseCategoryTwo: "",
+      expenseAmountTwo: "",
+      goalAmount: "",
     }
-   
-    submitForm() {
+  }
+  
+  submitForm() {
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    };
+    const userId = localStorage.getItem('my_user_id')
+    
+    if (!userId) {
+      localStorage.setItem('my_user_id', getRandomInt(100000))
+    };
         if (this.state.incomeAmount && this.state.goalAmount && this.state.expenseCategoryOne && this.state.expenseAmountOne) {
             const budgetData = {
                 incomeAmount: this.state.incomeAmount,
@@ -31,9 +41,14 @@ class InputForm extends Component {
                      amount: this.state.expenseAmountTwo}
                 ],
                 goalAmount: this.state.goalAmount,
+                userId: userId,
             }
-          this.props.createBudget(budgetData);
+          this.props.createBudget(budgetData, () => {
+            
+            this.props.history.push(`/budget/budgetPlanner`);
 
+          });
+            console.log(budgetData)
         } else alert("Please fill out income, expenses and goal");
       }
 
@@ -108,8 +123,10 @@ class InputForm extends Component {
         
                      
         </div>
+        
             <button id="tag-submit" type="button" class="btn btn-dark" onClick= {this.submitForm.bind(this)}>Submit</button>
-                     
+        
+
        </form>
      </div>
       );

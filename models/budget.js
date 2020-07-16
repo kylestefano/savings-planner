@@ -7,6 +7,7 @@ const budgetSchema = new Schema({
   // expenseCategory: String,
   // expenseAmount: Number,
   goalAmount: Number,
+  userId: Number,
   })
   
   module.exports = mongoose.model('Budget', budgetSchema)

@@ -7,15 +7,9 @@ import { Container } from "react-bootstrap";
 import InputForm from "./InputForm";
 import BudgetPlanner from "./BudgetPlanner";
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-};
-  
-const userId = localStorage.getItem('my_user_id')
 
-if (!userId) {
-  localStorage.setItem('my_user_id', getRandomInt(100000))
-};
+  
+
 
 const App = () => {
     return (
@@ -24,7 +18,7 @@ const App = () => {
         <Container id="app_view">
           <Switch>
             <Route exact path={"/"} component={InputForm} />
-            <Route path={"/events/:budgetId"} component={BudgetPlanner} />
+            <Route path={"/budget/budgetPlanner"} component={BudgetPlanner} />
 
           </Switch>
         </Container>
