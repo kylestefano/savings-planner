@@ -26,6 +26,7 @@ router.post('/budget', (request, response, next) => {
   // newBudget.expenseCategory = "Mortgage";
   // newBudget.expenseAmount = 1500;
   newBudget.goalAmount = request.body.goalAmount;
+  newBudget.userId = request.body.userId;
   
 
   newBudget.save((error, budget) => {

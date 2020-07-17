@@ -5,10 +5,13 @@ import { connect } from "react-redux";
 import "../index.css";
 import { getBudget } from "../actions/index.js";
 import { bindActionCreators } from "redux";
+// import Highcharts from 'highcharts'
+// import HighchartsReact from 'highcharts-react-official'
 import {Pie, Doughnut} from 'react-chartjs-2';
 
 // styling imports
 import "../index.css";
+
 
 class BudgetPlanner extends Component {
 
@@ -29,36 +32,48 @@ class BudgetPlanner extends Component {
     };
 
     this.props.getBudget(userId)
-    console.log("this is the props ", this.props)
+    console.log("these are the props ", this.props);
+
+    // this.renderChart();
+  }
+
+  buildBudgetData() {
+    console.log("expense data ", this.props.budget.budget.data);
+    let budgetData = {
+      // labels: this.props.budget.budget.data.expenses.map((category, index) => index),
+      datasets: [{
+        label: "Expense Items",
+        data: [65, 59, 80, 81, 56],
+        // this.props.,
+        fill: true,
+        borderColor: "#1b42df",
+        backgroundColor: "#36cf3c"
+      }]
+    }
+    return budgetData;
   }
 
   
-
   
-
   render() {
+    let budgetOptions = {
+      title: {
+      display: true,
+      text: "Expenses",
+      fontSize:30
+      },
+      maintainAspectRatio: false,
+      responsive: false
+    }
     console.log("hopefully data ", this.props)
     return (
-      
-      <h1>Hello World!</h1>
+      <div> 
+        <h1>Hello World!</h1>
       
       <div>
-        <Doughnut
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'Average Rainfall per month',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
+        <Pie data={this.buildBudgetData()} options={budgetOptions} height={400} width={400} /> 
       </div>
-      
+      </div>
     );
   }
 }

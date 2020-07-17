@@ -35,10 +35,8 @@ class InputForm extends Component {
             const budgetData = {
                 incomeAmount: this.state.incomeAmount,
                 expenses: [
-                    {category: this .state.expenseCategoryOne,
-                     amount: this.state.expenseAmountOne},
-                    {category: this .state.expenseCategoryTwo,
-                     amount: this.state.expenseAmountTwo}
+                    {category: this .state.expenseCategoryOne, amount: this.state.expenseAmountOne},
+                    {category: this .state.expenseCategoryTwo, amount: this.state.expenseAmountTwo}
                 ],
                 goalAmount: this.state.goalAmount,
                 userId: userId,
@@ -56,16 +54,16 @@ class InputForm extends Component {
     renderForm(data) {
       return (
         <div>
-       <form class="search-form">
-         <div class="form-group">
+       <form className="search-form">
+         <div className="form-group">
          <Row className="mb-6 justify-content-md-center">
 
-            <div class="input-group">
+            <div className="input-group">
             <div className="justify-content-md-center">
                 <h4 id="income-item" >Monthly Income ($):  </h4>
             </div>
-            <div class= "col-md-4">
-                <input type="number" id="income-input" class="form-control" placeholder="" onChange= {event => {this.setState({ incomeAmount: event.target.value })}}></input>
+            <div className= "col-md-4">
+                <input type="number" id="income-input" className="form-control" placeholder="" onChange= {event => {this.setState({ incomeAmount: event.target.value })}}></input>
             </div>
             </div>
 
@@ -73,34 +71,34 @@ class InputForm extends Component {
             <br></br>
             <br></br>
 
-            <div class="input-group">
+            <div className="input-group">
             <div>
                 <h4 id="expense-item" >Expense:  </h4>
             </div>
-            <div class= "col-md-4">
-                <input type="text" id="category-input" class="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryOne: event.target.value })}}></input>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryOne: event.target.value })}}></input>
             </div>
             <div>
                 <h4 id="expense-amount" >Amount ($):  </h4>
             </div>
-            <div class= "col-md-2">
-                <input type="number" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ expenseAmountOne: event.target.value })}}></input>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" onChange= {event => {this.setState({ expenseAmountOne: event.target.value })}}></input>
             </div>
             </div>
             
              
-            <div class="input-group">
+            <div className="input-group">
             <div>
                 <h4 id="expense-item" >Expense:  </h4>
             </div>
-            <div class= "col-md-4">
-                <input type="text" id="category-input" class="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryTwo: event.target.value })}}></input>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryTwo: event.target.value })}}></input>
             </div>
             <div>
                 <h4 id="expense-amount" >Amount ($):  </h4>
             </div>
-            <div class= "col-md-2">
-                <input type="number" id="amount-input" class="form-control" placeholder="" onChange= {event => {this.setState({ expenseAmountTwo: event.target.value })}}></input>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" onChange= {event => {this.setState({ expenseAmountTwo: event.target.value })}}></input>
             </div>
             </div>
 
@@ -110,12 +108,12 @@ class InputForm extends Component {
             <br></br>
             <br></br>
 
-            <div class="input-group">
+            <div className="input-group">
             <div className="justify-content-md-center">
                 <h4 id="savings-item" >Target Savings Amount ($):  </h4>
                 </div>
             <div class= "col-md-4">
-                <input type="number" id="item-input" class="form-control" placeholder="" value = {this.state.goal} onChange= {event => {this.setState({ goalAmount: event.target.value })}}></input>
+                <input type="number" id="item-input" className="form-control" placeholder="" value = {this.state.goal} onChange= {event => {this.setState({ goalAmount: event.target.value })}}></input>
                 </div>
             </div>
 
@@ -124,7 +122,7 @@ class InputForm extends Component {
                      
         </div>
         
-            <button id="tag-submit" type="button" class="btn btn-dark" onClick= {this.submitForm.bind(this)}>Submit</button>
+            <button id="tag-submit" type="button" className="btn btn-dark" onClick= {this.submitForm.bind(this)}>Submit</button>
         
 
        </form>
