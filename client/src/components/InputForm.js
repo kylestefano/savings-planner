@@ -112,7 +112,7 @@ class InputForm extends Component {
             <div className="justify-content-md-center">
                 <h4 id="savings-item" >Target Savings Amount ($):  </h4>
                 </div>
-            <div class= "col-md-4">
+            <div className= "col-md-4">
                 <input type="number" id="item-input" className="form-control" placeholder="" value = {this.state.goal} onChange= {event => {this.setState({ goalAmount: event.target.value })}}></input>
                 </div>
             </div>

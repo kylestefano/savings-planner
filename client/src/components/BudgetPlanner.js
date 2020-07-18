@@ -40,17 +40,28 @@ class BudgetPlanner extends Component {
 
   buildBudgetData() {
     console.log("expense data ", this.props.budget.budget.data.expenses[0].category);
+    
+    let savingsGoal = this.props.budget.budget.data.goalAmount;
+    let monthsToSave = (savingsGoal / this.calculateMonthlySavings())
+    console.log ("months to hit goal is ", monthsToSave)
+
+    
+    // for (var j = 0; j < this.props.budget.budget.data.expenses.length; j++) {
+    //   let expenseAmount = Number(this.props.budget.budget.data.expenses[j].amount)
+    //   expenseTotal += expenseAmount;
+    // }
+
     let budgetData = {
-      labels: ["0", "1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12"],
+      labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
        //labels: this.props.budget.budget.data.expenses.map((category, index) => index),
       datasets: [{
         label: ["Savings Timeline"],
-        data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+        data: [0, this.calculateMonthlySavings()],
         // this.props.,
         fill: true,
         borderColor: "#1b42df",
         backgroundColor: [
-          "#696565",
+          "#36cf3c",
 
           ],
       }]
@@ -58,12 +69,32 @@ class BudgetPlanner extends Component {
     return budgetData;
   }
 
+  calculateMonthlySavings() {
+    let income = this.props.budget.budget.data.incomeAmount;
+    let savingsGoal = this.props.budget.budget.data.goalAmount;
+
+    // console.log("income is ", income)
+    // console.log("goal is ", savingsGoal)
+    
+    let expenseTotal = 0;
+    for (var i = 0; i < this.props.budget.budget.data.expenses.length; i++) {
+          let expenseAmount = Number(this.props.budget.budget.data.expenses[i].amount)
+          expenseTotal += expenseAmount;
+        }
+        // console.log("total of expenses ", expenseTotal)
+
+    let cashToSave = (income - expenseTotal)
+    // console.log("cash to save ", cashToSave)
+     
+    return cashToSave
+  }
+
   renderGraph() {
     let data = this.props.budget.budget.data;
     let budgetOptions = {
       title: {
       display: true,
-      text: "Expenses",
+      // text: "Savings Timeline",
       fontSize:20
       },
       maintainAspectRatio: false,
@@ -83,6 +114,7 @@ class BudgetPlanner extends Component {
     if (data) {
       return  <Form.Group controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label={this.props.budget.budget.data.expenses[0].category} />
+                <Form.Check type="checkbox" label={this.props.budget.budget.data.expenses[1].category} />
               </Form.Group>
     } else {
       return <h5>Loading....</h5>
@@ -96,13 +128,13 @@ class BudgetPlanner extends Component {
     return (
       <div> 
         <h3>Cash Flow</h3>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm">
                {this.renderGraph()}
             </div>
-            <div class="col-sm">
-              {this.renderChecklist()}
+            <div className="col-sm">
+            {this.renderChecklist()}
             </div>
           
         
