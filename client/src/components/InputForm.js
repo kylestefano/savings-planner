@@ -35,8 +35,8 @@ class InputForm extends Component {
             const budgetData = {
                 incomeAmount: this.state.incomeAmount,
                 expenses: [
-                    {category: this .state.expenseCategoryOne, amount: this.state.expenseAmountOne},
-                    {category: this .state.expenseCategoryTwo, amount: this.state.expenseAmountTwo}
+                    {category: this.state.expenseCategoryOne, amount: this.state.expenseAmountOne},
+                    {category: this.state.expenseCategoryTwo, amount: this.state.expenseAmountTwo}
                 ],
                 goalAmount: this.state.goalAmount,
                 userId: userId,

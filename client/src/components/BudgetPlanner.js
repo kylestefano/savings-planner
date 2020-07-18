@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
-// import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../index.css";
 import { getBudget } from "../actions/index.js";
 import { bindActionCreators } from "redux";
 // import Highcharts from 'highcharts'
 // import HighchartsReact from 'highcharts-react-official'
-import {Pie, Doughnut} from 'react-chartjs-2';
+import {Pie, Doughnut, Line} from 'react-chartjs-2';
 
 // styling imports
 import "../index.css";
@@ -37,42 +37,77 @@ class BudgetPlanner extends Component {
     // this.renderChart();
   }
 
+
   buildBudgetData() {
-    console.log("expense data ", this.props.budget.budget.data);
+    console.log("expense data ", this.props.budget.budget.data.expenses[0].category);
     let budgetData = {
-      // labels: this.props.budget.budget.data.expenses.map((category, index) => index),
+      labels: ["0", "1", "2", "3", "4", "5", "7", "8", "9", "10", "11", "12"],
+       //labels: this.props.budget.budget.data.expenses.map((category, index) => index),
       datasets: [{
-        label: "Expense Items",
-        data: [65, 59, 80, 81, 56],
+        label: ["Savings Timeline"],
+        data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
         // this.props.,
         fill: true,
         borderColor: "#1b42df",
-        backgroundColor: "#36cf3c"
+        backgroundColor: [
+          "#696565",
+
+          ],
       }]
     }
     return budgetData;
   }
 
-  
-  
-  render() {
+  renderGraph() {
+    let data = this.props.budget.budget.data;
     let budgetOptions = {
       title: {
       display: true,
       text: "Expenses",
-      fontSize:30
+      fontSize:20
       },
       maintainAspectRatio: false,
       responsive: false
     }
+    
+    if (data) {
+      return <Line data={this.buildBudgetData()} options={budgetOptions} height={400} width={400} />;
+    } else {
+      return <h5>Loading....</h5>
+    }
+  }
+
+  renderChecklist() {
+    let data = this.props.budget.budget.data;
+
+    if (data) {
+      return  <Form.Group controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label={this.props.budget.budget.data.expenses[0].category} />
+              </Form.Group>
+    } else {
+      return <h5>Loading....</h5>
+    }
+  }
+
+  
+  
+  render() {
     console.log("hopefully data ", this.props)
     return (
       <div> 
-        <h1>Hello World!</h1>
-      
-      <div>
-        <Pie data={this.buildBudgetData()} options={budgetOptions} height={400} width={400} /> 
-      </div>
+        <h3>Cash Flow</h3>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+               {this.renderGraph()}
+            </div>
+            <div class="col-sm">
+              {this.renderChecklist()}
+            </div>
+          
+        
+          </div>
+        </div>
       </div>
     );
   }
