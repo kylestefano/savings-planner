@@ -42,21 +42,25 @@ class BudgetPlanner extends Component {
     console.log("expense data ", this.props.budget.budget.data.expenses[0].category);
     
     let savingsGoal = this.props.budget.budget.data.goalAmount;
+    let monthlyAmount = this.calculateMonthlySavings()
     let monthsToSave = (savingsGoal / this.calculateMonthlySavings())
     console.log ("months to hit goal is ", monthsToSave)
-
     
-    // for (var j = 0; j < this.props.budget.budget.data.expenses.length; j++) {
-    //   let expenseAmount = Number(this.props.budget.budget.data.expenses[j].amount)
-    //   expenseTotal += expenseAmount;
-    // }
+    let graphData = []
+         
+    for (var j = 0; j < (monthsToSave + 1); j++) {
+        let graphXAxis = (monthlyAmount * j)
+        graphData.push(graphXAxis)
+        }
+
+  //  console.log("graph data is ", graphData)
 
     let budgetData = {
       labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
        //labels: this.props.budget.budget.data.expenses.map((category, index) => index),
       datasets: [{
         label: ["Savings Timeline"],
-        data: [0, this.calculateMonthlySavings()],
+        data: graphData,
         // this.props.,
         fill: true,
         borderColor: "#1b42df",
