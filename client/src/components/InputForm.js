@@ -18,6 +18,22 @@ class InputForm extends Component {
       expenseAmountOne: "",
       expenseCategoryTwo: "",
       expenseAmountTwo: "",
+      expenseCategoryThree: "",
+      expenseAmountThree: "",
+      expenseCategoryFour: "",
+      expenseAmountFour: "",
+      expenseCategoryFive: "",
+      expenseAmountFive: "",
+      expenseCategorySix: "",
+      expenseAmountSix: "",
+      expenseCategorySeven: "",
+      expenseAmountTSeven: "",
+      expenseCategoryEight: "",
+      expenseAmountEight: "",
+      expenseCategoryNine: "",
+      expenseAmountNine: "",
+      expenseCategoryTen: "",
+      expenseAmountTen: "",
       goalAmount: "",
     }
   }
@@ -36,7 +52,15 @@ class InputForm extends Component {
                 incomeAmount: this.state.incomeAmount,
                 expenses: [
                     {category: this.state.expenseCategoryOne, amount: this.state.expenseAmountOne},
-                    {category: this.state.expenseCategoryTwo, amount: this.state.expenseAmountTwo}
+                    {category: this.state.expenseCategoryTwo, amount: this.state.expenseAmountTwo},
+                    {category: this.state.expenseCategoryThree, amount: this.state.expenseAmountThree},
+                    {category: this.state.expenseCategoryFour, amount: this.state.expenseAmountFour},
+                    {category: this.state.expenseCategoryFive, amount: this.state.expenseAmountFive},
+                    {category: this.state.expenseCategorySix, amount: this.state.expenseAmountSix},
+                    {category: this.state.expenseCategorySeven, amount: this.state.expenseAmountSeven},
+                    {category: this.state.expenseCategoryEight, amount: this.state.expenseAmountEight},
+                    {category: this.state.expenseCategoryNine, amount: this.state.expenseAmountNine},
+                    {category: this.state.expenseCategoryTen, amount: this.state.expenseAmountTen},
                 ],
                 goalAmount: this.state.goalAmount,
                 userId: userId,
@@ -82,7 +106,7 @@ class InputForm extends Component {
                 <h4 id="expense-amount" >Amount ($):  </h4>
             </div>
             <div className= "col-md-2">
-                <input type="number" id="amount-input" className="form-control" placeholder="" onChange= {event => {this.setState({ expenseAmountOne: event.target.value })}}></input>
+                <input type="number"  id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountOne: event.target.value })}}></input>
             </div>
             </div>
             
@@ -98,7 +122,135 @@ class InputForm extends Component {
                 <h4 id="expense-amount" >Amount ($):  </h4>
             </div>
             <div className= "col-md-2">
-                <input type="number" id="amount-input" className="form-control" placeholder="" onChange= {event => {this.setState({ expenseAmountTwo: event.target.value })}}></input>
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountTwo: event.target.value })}}></input>
+            </div>
+            </div>
+
+
+            <div className="input-group">
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryThree: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountThree: event.target.value })}}></input>
+            </div>
+            </div>
+
+
+            <div className="input-group">
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryFour: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountFour: event.target.value })}}></input>
+            </div>
+            </div>
+
+
+            <div className="input-group">
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryFive: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountFive: event.target.value })}}></input>
+            </div>
+            </div>
+
+
+            <div className="input-group">
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategorySix: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountSix: event.target.value })}}></input>
+            </div>
+            </div>
+
+
+            <div className="input-group">
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategorySeven: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountSeven: event.target.value })}}></input>
+            </div>
+            </div>
+
+
+            <div className="input-group">
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryEight: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountEight: event.target.value })}}></input>
+            </div>
+            </div>
+
+
+            <div className="input-group">
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryNine: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountNine: event.target.value })}}></input>
+            </div>
+            </div>
+
+
+            <div className="input-group">
+            <div>
+                <h4 id="expense-item" >Expense:  </h4>
+            </div>
+            <div className= "col-md-4">
+                <input type="text" id="category-input" className="form-control" placeholder="e.g. Mortgage, Loan, Utilities, Cell Phone, etc" onChange= {event => {this.setState({ expenseCategoryTen: event.target.value })}}></input>
+            </div>
+            <div>
+                <h4 id="expense-amount" >Amount ($):  </h4>
+            </div>
+            <div className= "col-md-2">
+                <input type="number" id="amount-input" className="form-control" placeholder="" defaultValue= "0" onChange= {event => {this.setState({ expenseAmountTen: event.target.value })}}></input>
             </div>
             </div>
 
