@@ -88,7 +88,7 @@ class BudgetPlanner extends Component {
             expenseTotal += expenseAmount;
           }
         }
-        debugger
+        // debugger
         // console.log("total of expenses ", expenseTotal)
 
     let cashToSave = (income - expenseTotal)
@@ -96,6 +96,55 @@ class BudgetPlanner extends Component {
      
     return cashToSave
   }
+
+  buildExpenseData() {
+    console.log("expense data ", this.props.budget.budget.data.expenses[0].category);
+    let pieLabels = []
+    let pieNumbers = []
+
+    for (var i = 0; i < this.props.budget.budget.data.expenses.length; i++) {
+      let expenseAmount = Number(this.props.budget.budget.data.expenses[i].amount)
+      if (expenseAmount > 0) {
+        pieLabels.push(this.props.budget.budget.data.expenses[i].category)
+        pieNumbers.push(this.props.budget.budget.data.expenses[i].amount)
+      }
+    }
+    
+    let expenseData = {
+      labels: pieLabels,
+      datasets: [{
+        // label: pieLabels,
+        data: pieNumbers,
+        // this.props.,
+        fill: true,
+        borderColor: "#1b42df",
+        backgroundColor: "#36cf3c",
+
+          
+      }]
+    }
+    return expenseData;
+  }
+
+  renderPieChart() {
+    let data = this.props.budget.budget.data;
+    let pieOptions = {
+      title: {
+        display: true,
+        text: "Expenses",
+        fontSize:30
+        },
+        maintainAspectRatio: false,
+        responsive: false
+      }
+    if (data) {
+      return <Pie data={this.buildExpenseData()} options={pieOptions} height={400} width={400} /> ;
+    } else {
+      return <h5>Loading....</h5>
+    }
+  }
+
+   
 
   renderGraph() {
     let data = this.props.budget.budget.data;
@@ -130,80 +179,94 @@ class BudgetPlanner extends Component {
   //   }
   // }
   
-  renderChecklist() {
-    let data = this.props.budget.budget.data;
-
-    if (data) {
-      return  <div className="form-group">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[0].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[1].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[2].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[3].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[4].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[5].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[6].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[7].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[8].category}
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1">
-                    {this.props.budget.budget.data.expenses[9].category}
-                  </label>
-                </div>
-              </div>
-    } else {
-      return <h5>Loading....</h5>
-    }
-  }
+  // renderChecklist() {
+    
+  //   function functionTest() {
+  //     console.log("this was checked")
+  //   }     
+    
+  //   let data = this.props.budget.budget.data;
+    
+  //   if (data) {
+  //     return  <div className="form-group">
+  //               <div className="form-check">
+  //                 <label className="form-check-label" for="defaultCheck1">
+  //                   <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onChange={functionTest()} />
+  //                   {this.props.budget.budget.data.expenses[0].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[1].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck3" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[2].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck4" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[3].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck5" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[4].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck6" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[5].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck7" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[6].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck8" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[7].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck9" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[8].category}
+  //                 </label>
+  //               </div>
+  //               <div class="form-check">
+  //                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck10" />
+  //                 <label class="form-check-label" for="defaultCheck1">
+  //                   {this.props.budget.budget.data.expenses[9].category}
+  //                 </label>
+  //               </div>
+  //             </div>
+  //   } else {
+  //     return <h5>Loading....</h5>
+  //   }
+  // }
 
   
   
   render() {
+    let budgetOptions = {
+      title: {
+      display: true,
+      text: "Expenses",
+      fontSize:30
+      },
+      maintainAspectRatio: false,
+      responsive: false
+    }
     console.log("hopefully data ", this.props)
     return (
       <div> 
@@ -214,7 +277,7 @@ class BudgetPlanner extends Component {
                {this.renderGraph()}
             </div>
             <div className="col-sm">
-            {this.renderChecklist()}
+            {this.renderPieChart()}
             </div>
           
         
