@@ -19,6 +19,7 @@ router.get('/budget/:userId', (request, response, next) => {
 
 // creates a new budget
 router.post('/budget', (request, response, next) => {
+  console.log("this is request.body ", request.body)
   let newBudget = new Budget();
 
   newBudget.incomeAmount = request.body.incomeAmount;
@@ -32,8 +33,8 @@ router.post('/budget', (request, response, next) => {
   newBudget.save((error, budget) => {
     if (error) throw error
     
+    response.send(budget);
   })
-  response.send(newBudget);
 });
 
 

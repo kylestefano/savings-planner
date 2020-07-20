@@ -6,8 +6,8 @@ export default function(state = {}, action) {
   switch (action.type) {
     
     case CREATE_BUDGET:
-        console.log(action.payload)
-      return action.payload
+        console.log("this is what we are creating", action.payload)
+      return action.payload.data
       
       
       case GET_BUDGET:

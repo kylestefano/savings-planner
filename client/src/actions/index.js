@@ -26,9 +26,9 @@ export function createBudget (budgetData, callback) {
 
 }
 
-export function getBudget(budgetId) {
+export function getBudget(userId) {
     
-    let url = `${ROOT_URL}/${budgetId}`;
+    let url = `${ROOT_URL}/${userId}`;
 
     const request = axios.get(url);
     request.then((response) => {

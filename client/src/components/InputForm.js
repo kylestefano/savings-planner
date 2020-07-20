@@ -298,7 +298,9 @@ class InputForm extends Component {
   }
   
   function mapStateToProps(state) {
-    
+    return {
+      budget: state.budget,
+    };
   }
   
   function mapDispatchToProps(dispatch) {
