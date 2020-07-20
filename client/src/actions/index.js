@@ -4,9 +4,10 @@ const ROOT_URL = "http://localhost:8000/budget";
 
 export const CREATE_BUDGET = "CREATE_BUDGET";
 export const GET_BUDGET = "GET_BUDGET";
+export const UPDATE_BUDGET = "UPDATE_BUDGET";
 
 
-export function createBudget (budgetData, callback) {
+export function createBudget(budgetData, callback) {
 
     let url = `${ROOT_URL}/`;
     
@@ -38,4 +39,25 @@ export function getBudget(userId) {
       type: GET_BUDGET,
       payload: request,
     };
+}
+
+
+export function updateBudget(budgetData, userId, callback) {
+
+    let url = `${ROOT_URL}/${userId}/calculate`;
+    
+    const request = axios({
+        method: "post",
+        url: url,
+        data: budgetData
+        
+    })
+    
+    request.then(() => callback());
+    
+    return {
+        type: UPDATE_BUDGET,
+        payload: request,
+    };
+
 }
