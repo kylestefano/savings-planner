@@ -7,7 +7,7 @@ import { getBudget, updateBudget } from "../actions/index.js";
 import { bindActionCreators } from "redux";
 import {Pie, Doughnut, Line} from 'react-chartjs-2';
 
-
+let categories = [];
 
 class SavingsPlan extends Component {
 
@@ -59,15 +59,12 @@ class SavingsPlan extends Component {
         labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
          //labels: this.props.budget.budget.data.expenses.map((category, index) => index),
         datasets: [{
-          label: ["Savings Timeline (Months)"],
+          label: ["Savings Growth"],
           data: [0, 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000],
           // this.props.,
           fill: true,
           borderColor: "#1b42df",
-          backgroundColor: [
-            "#36cf3c",
-  
-            ],
+          backgroundColor: "#36cf3c"
         }]
       }
       return budgetData;
@@ -81,8 +78,8 @@ class SavingsPlan extends Component {
       let budgetOptions = {
         title: {
         display: true,
-        // text: "Savings Timeline",
-        fontSize:20
+        text: "Savings Timeline (Months)",
+        fontSize:18
         },
         maintainAspectRatio: false,
         responsive: false
@@ -94,12 +91,23 @@ class SavingsPlan extends Component {
     
     }
     
-   
+    
+
     toggleExpense(e) {
     //   if (this.props.budget.expenses) {
+
+    
   
       console.log("this is the target ", e.target.value)
-      e.preventDefault()
+      
+
+      if (categories.includes(e.target.value)) {
+        categories = categories.filter(category => category !== e.target.value)
+      
+        } else {
+            categories.push(e.target.value)
+        }
+        console.log(categories)
     //   let category = e.target.value
     //   let newData = this.props.budget.expenses.filter(expenses => expenses.category !== category )
     //   this.props.updateBudget(newData, () => {
@@ -122,60 +130,60 @@ class SavingsPlan extends Component {
                   
                   <div className="form-check">
                     <label className="form-check-label" >
-                      <input className="form-check-input" type="checkbox" value="Mortgage" id="defaultCheck1" onClick={this.toggleExpense}/>
+                      <input className="form-check-input" type="checkbox" value="Mortgage" id="defaultCheck1" onChange={this.toggleExpense}/>
                       Mortgage
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Auto Loan" id="defaultCheck2" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Auto Loan" id="defaultCheck2" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                       Auto Loan
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Utilities" id="defaultCheck3" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Utilities" id="defaultCheck3" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                       Utilities
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Groceries" id="defaultCheck4" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Groceries" id="defaultCheck4" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                       Groceries
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Gasoline" id="defaultCheck5" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Gasoline" id="defaultCheck5" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                       Gasoline
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Restaurants" id="defaultCheck6" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Restaurants" id="defaultCheck6" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                       Restaurants
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Entertainment" id="defaultCheck7" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Entertainment" id="defaultCheck7" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                       Entertainment
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Clothing" id="defaultCheck8" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Clothing" id="defaultCheck8" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                       Clothing
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Cell Phone" id="defaultCheck9" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Cell Phone" id="defaultCheck9" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                        Cell Phone
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Gym Membership" id="defaultCheck10" onClick={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Gym Membership" id="defaultCheck10" onChange={this.toggleExpense}/>
                     <label className="form-check-label" >
                       Gym Membership
                     </label>
