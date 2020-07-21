@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Row, Col, Container, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../index.css";
-import { getBudget, updateBudget } from "../actions/index.js";
+import { getBudget } from "../actions/index.js";
 import { bindActionCreators } from "redux";
 import {Pie, Doughnut, Line} from 'react-chartjs-2';
 
@@ -14,7 +14,12 @@ class SavingsPlan extends Component {
     constructor(props) {
       super(props);
       
+      this.state = {
+          expenses: [],
+          userId: localStorage.getItem('my_user_id'),
+      }
     }
+
   
     componentDidMount() { 
   
@@ -26,29 +31,32 @@ class SavingsPlan extends Component {
       if (!userId) {
         localStorage.setItem('my_user_id', getRandomInt(100000))
       };
-  
+      console.log("initial budget ", this.props.budget)
+    
       this.props.getBudget(userId)
       
-      
-  
-      // this.renderChart();
     }
   
-    // componentDidUpdate() {
-    //   function getRandomInt(max) {
-    //     return Math.floor(Math.random() * Math.floor(max));
-    //   };
-    //   const userId = localStorage.getItem('my_user_id')
+    componentDidUpdate() {
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      };
+      const userId = localStorage.getItem('my_user_id')
       
-    //   if (!userId) {
-    //     localStorage.setItem('my_user_id', getRandomInt(100000))
-    //   };
-    //   this.props.updateBudget(userId)
-    // }
-  
-  
+      if (!userId) {
+        localStorage.setItem('my_user_id', getRandomInt(100000))
+      };
+      
+      console.log("new budget ", this.props.budget)
+      
+    //   this.props.getBudget(userId)
+    }
+
+    
+    
     buildBudgetData() {
-  
+        
+        console.log("this is this.props ", this.props)
             
     //   let graphData = []
     //   let graphXAxis = []
@@ -95,25 +103,31 @@ class SavingsPlan extends Component {
 
     toggleExpense(e) {
     //   if (this.props.budget.expenses) {
-
-    
   
-      console.log("this is the target ", e.target.value)
-      
+    //   console.log("this is the target ", e.target.value)
+
+    let categories = this.state.expenses
 
       if (categories.includes(e.target.value)) {
-        categories = categories.filter(category => category !== e.target.value)
-      
+        categories = categories.filter(category => category.category !== e.target.value)
+        this.setState({expenses: categories}, () => {
+            console.log("This is the state WE is looking for", this.state)
+        })
         } else {
-            categories.push(e.target.value)
-        }
+            categories.push({category: e.target.value})
+            this.setState({expenses: categories}, () => {
+                console.log("This is the state WE is looking for #2", this.state)
+        })
         console.log(categories)
-    //   let category = e.target.value
-    //   let newData = this.props.budget.expenses.filter(expenses => expenses.category !== category )
-    //   this.props.updateBudget(newData, () => {
-    //     console.log('hello')
-    //   })
-    // }
+
+    }
+  
+    }
+
+    submitState (e) {
+        e.preventDefault()
+
+        this.props.getBudget(this.state.userId, this.state.expenses)
     }
   
     renderChecklist() {
@@ -122,7 +136,7 @@ class SavingsPlan extends Component {
   
       let data = this.props;
   
-      console.log("this would be our props ", data)
+    //   console.log("this would be our props ", data)
       
       
         return  (
@@ -130,64 +144,66 @@ class SavingsPlan extends Component {
                   
                   <div className="form-check">
                     <label className="form-check-label" >
-                      <input className="form-check-input" type="checkbox" value="Mortgage" id="defaultCheck1" onChange={this.toggleExpense}/>
+                      <input className="form-check-input" type="checkbox" value="Mortgage" id="defaultCheck1" onChange={event => {this.toggleExpense(event)}}/>
                       Mortgage
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Auto Loan" id="defaultCheck2" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Auto Loan" id="defaultCheck2" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                       Auto Loan
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Utilities" id="defaultCheck3" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Utilities" id="defaultCheck3" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                       Utilities
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Groceries" id="defaultCheck4" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Groceries" id="defaultCheck4" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                       Groceries
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Gasoline" id="defaultCheck5" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Gasoline" id="defaultCheck5" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                       Gasoline
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Restaurants" id="defaultCheck6" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Restaurants" id="defaultCheck6" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                       Restaurants
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Entertainment" id="defaultCheck7" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Entertainment" id="defaultCheck7" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                       Entertainment
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Clothing" id="defaultCheck8" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Clothing" id="defaultCheck8" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                       Clothing
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Cell Phone" id="defaultCheck9" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Cell Phone" id="defaultCheck9" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                        Cell Phone
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Gym Membership" id="defaultCheck10" onChange={this.toggleExpense}/>
+                    <input className="form-check-input" type="checkbox" value="Gym Membership" id="defaultCheck10" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
                       Gym Membership
                     </label>
                   </div>
+                <br></br>
+                  <button id="tag-submit" type="button" className="btn btn-dark" onClick={event => {this.submitState(event)}}>Submit</button>
                 </div>
         )
       
@@ -196,6 +212,10 @@ class SavingsPlan extends Component {
     
     
     render() {
+
+      console.log("this is updated budget", this.props.updatedBudget)
+
+      if(this.props.updatedBudget) {
       
       let budgetOptions = {
         title: {
@@ -233,7 +253,7 @@ class SavingsPlan extends Component {
                     <br></br>
                     <div className="row">
                         <div className="savings-summary">
-                            <h6 className="summary-text">With a monthly income of $<span className="income">6000</span>, and monthly expenses of $<span className="expences">3500</span>, you will reach your savings goal of $<span className="goal">25000</span> in <span className="months">10</span> months.</h6>
+                            <h6 className="summary-text">With a monthly income of $<span className="income">{this.props.updatedBudget.budget.incomeAmount}</span>, and monthly expenses of $<span className="expences">3500</span>, you will reach your savings goal of $<span className="goal">25000</span> in <span className="months">10</span> months.</h6>
                         </div>
                     </div>
           
@@ -241,18 +261,22 @@ class SavingsPlan extends Component {
         </div>
         
       );
+      } else {
+        <h2>loading.....</h2>
+      }
     }
   }
   
   
   function mapDispatchToProps(dispatch) {
-    return bindActionCreators ( {getBudget, updateBudget}, dispatch);
+    return bindActionCreators ( {getBudget}, dispatch);
     
   }
   
   function mapStateToProps(state) {
     return {
       budget: state.budget,
+      updatedBudget: state.updatedBudget
     };
   }
   

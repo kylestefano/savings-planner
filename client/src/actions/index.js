@@ -27,14 +27,18 @@ export function createBudget(budgetData, callback) {
 
 }
 
-export function getBudget(userId) {
+export function getBudget(userId, expenses) {
     
-    let url = `${ROOT_URL}/${userId}`;
+    let url = `${ROOT_URL}/${userId}/calculate`;
 
-    const request = axios.get(url);
-    request.then((response) => {
-        console.log("this is the response ", response)
+    const request = axios({
+        method: "post",
+        url: url,
+        data: {expenses: expenses}
+        
     })
+
+    // const request = axios.get(url);
     return {
       type: GET_BUDGET,
       payload: request,
@@ -42,22 +46,22 @@ export function getBudget(userId) {
 }
 
 
-export function updateBudget(budgetData, userId, callback) {
+// export function getBudget(budgetData, userId, callback) {
 
-    let url = `${ROOT_URL}/${userId}/calculate`;
+//     let url = `${ROOT_URL}/${userId}/calculate`;
     
-    const request = axios({
-        method: "post",
-        url: url,
-        data: budgetData
+//     const request = axios({
+//         method: "post",
+//         url: url,
+//         data: budgetData
         
-    })
+//     })
     
-    request.then(() => callback());
+//     request.then(() => callback());
     
-    return {
-        type: UPDATE_BUDGET,
-        payload: request,
-    };
+//     return {
+//         type: UPDATE_BUDGET,
+//         payload: request,
+//     };
 
-}
+// }

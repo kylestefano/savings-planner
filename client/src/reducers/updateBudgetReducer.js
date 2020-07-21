@@ -5,11 +5,6 @@ export default function(state = {}, action) {
   
   switch (action.type) {
     
-    case CREATE_BUDGET:
-        console.log("this is what we are creating", action.payload)
-      return action.payload.data
-      
-      
     case GET_BUDGET:
       console.log("this is the payload WE NOW WANT ", action.payload)
       
@@ -18,10 +13,7 @@ export default function(state = {}, action) {
          
       return action.payload.data;
          
-                        
-        
-             
-          
+              
       default:
         return state;
   }

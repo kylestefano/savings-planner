@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Row, Col, Container, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 import "../index.css";
-import { getBudget, updateBudget } from "../actions/index.js";
+// import { getBudget, updateBudget } from "../actions/index.js";
 import { bindActionCreators } from "redux";
 // import Highcharts from 'highcharts'
 // import HighchartsReact from 'highcharts-react-official'
@@ -292,7 +292,7 @@ class BudgetPlanner extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators ( {getBudget, updateBudget}, dispatch);
+  return bindActionCreators ( {}, dispatch);
   
 }
 

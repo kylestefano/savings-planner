@@ -3,19 +3,19 @@ const Budget = require('../models/budget')
 
 
 
-router.get('/budget/:userId', (request, response, next) => {
-  const userId = request.params.userId;
+// router.get('/budget/:userId', (request, response, next) => {
+//   const userId = request.params.userId;
 
   
 
-  Budget
-  .find({userId: userId}, (error, budget) => {
-    if (error) return next(error)
-    console.log("Kyle needs ", budget)
-    response.send(budget);
+//   Budget
+//   .find({userId: userId}, (error, budget) => {
+//     if (error) return next(error)
+//     console.log("Kyle needs ", budget)
+//     response.send(budget);
     
-  })
-});
+//   })
+// });
 
 
 
@@ -40,38 +40,48 @@ router.post('/budget', (request, response, next) => {
 });
 
 router.post('/budget/:userId/calculate', (request, response, next) => {
-  // console.log("this is request.body ", request.body)
-  // let newBudget = new Budget();
+  
   Budget
-      .find(request.params.userId)
+      .findOne({userId: request.params.userId})
       .exec((error, budget) => {
 
         if (error) return next(error)
         
-        let income = request.body.incomeAmount;
+        let income = budget.incomeAmount;
         // let savingsGoal = request.body.goalAmount;
         let expenseTotal = 0;
         
+        let currentExpenses = budget.expenses
+        let expensesToRemove = request.body.expenses
+
+        
+
+          if (expensesToRemove && expensesToRemove.length !== 0) {
+            currentExpenses = currentExpenses.filter(expense => {
+                expensesToRemove.forEach(expenseToRemove => {
+                  if(expenseToRemove.category === expense.category) {
+                    return expense.amount = 0
+                  }
+                })
+                return expense.amount
+              })
+            }
+
         
         
-        for (var i = 0; i < request.body.expenses.length; i++) {
-          let expenseAmount = Number(request.body.expenses[i].amount)
+        for (var i = 0; i < currentExpenses.length; i++) {
+          let expenseAmount = Number(currentExpenses[i].amount)
           if (expenseAmount > 0) {
             expenseTotal += expenseAmount;
           }
         }
-        // debugger
-        // console.log("total of expenses ", expenseTotal)
-        
+           
         let monthlyAmountSaved = (income - expenseTotal)
-          
-        
-        // console.log("expense data ", request.body);
-        
-        let savingsGoal = request.body.goalAmount;
+            
+        let savingsGoal = budget.goalAmount;
         
         let monthsToSave = (savingsGoal / monthlyAmountSaved)
-        console.log ("months to hit goal is ", monthsToSave)
+        // console.log ("months to hit goal is ", monthsToSave)
         
         let graphData = []
         let graphXAxis = []
@@ -81,15 +91,21 @@ router.post('/budget/:userId/calculate', (request, response, next) => {
           graphData.push(graphLine)
           graphXAxis.push(j)
         }
+
         
         
+         
+                
+        response.send({
+          budget: budget,
+          expenseTotal: expenseTotal,
+          monthlyAmountSaved: monthlyAmountSaved,
+          monthsToSave: monthsToSave,
+
+          graphData: graphData,
+          graphXAxis:graphXAxis
+        });
         
-        
-        budget.save((error, budget) => {
-          if (error) throw error
-          
-          response.send(budget);
-        })
       })
 });
 
