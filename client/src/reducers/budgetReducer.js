@@ -1,4 +1,4 @@
-import { CREATE_BUDGET, GET_BUDGET, UPDATE_BUDGET } from '../actions/index';
+import { CREATE_BUDGET } from '../actions/index';
 
 
 export default function(state = {}, action) {
@@ -10,15 +10,7 @@ export default function(state = {}, action) {
       return action.payload.data
       
       
-    case GET_BUDGET:
-      console.log("this is the payload WE NOW WANT ", action.payload)
-      
-      
-      // console.log( "Action payload for get_budget is", action.payload.data );  
-         
-      return action.payload.data;
-         
-                        
+                  
         
              
           

@@ -5,7 +5,7 @@ import Header from "./Header";
 import { Container } from "react-bootstrap";
 
 import InputForm from "./InputForm";
-import BudgetPlanner from "./BudgetPlanner";
+// import BudgetPlanner from "./BudgetPlanner";
 import SavingsPlan from "./SavingsPlan";
 
 

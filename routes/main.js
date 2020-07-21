@@ -3,21 +3,6 @@ const Budget = require('../models/budget')
 
 
 
-// router.get('/budget/:userId', (request, response, next) => {
-//   const userId = request.params.userId;
-
-  
-
-//   Budget
-//   .find({userId: userId}, (error, budget) => {
-//     if (error) return next(error)
-//     console.log("Kyle needs ", budget)
-//     response.send(budget);
-    
-//   })
-// });
-
-
 
 // creates a new budget
 router.post('/budget', (request, response, next) => {
@@ -40,6 +25,8 @@ router.post('/budget', (request, response, next) => {
 });
 
 router.post('/budget/:userId/calculate', (request, response, next) => {
+
+  console.log("this is rendering on the route")
   
   Budget
       .findOne({userId: request.params.userId})
@@ -80,7 +67,7 @@ router.post('/budget/:userId/calculate', (request, response, next) => {
             
         let savingsGoal = budget.goalAmount;
         
-        let monthsToSave = (savingsGoal / monthlyAmountSaved)
+        let monthsToSave = Math.round(savingsGoal / monthlyAmountSaved * 100) / 100;
         // console.log ("months to hit goal is ", monthsToSave)
         
         let graphData = []

@@ -58,17 +58,25 @@ class SavingsPlan extends Component {
         
         console.log("this is this.props ", this.props)
             
-    //   let graphData = []
-    //   let graphXAxis = []
-       
+      let graphDataRender = []
+      let graphXAxisRender = []
+      
+      for (let i = 0; i < this.props.updatedBudget.graphXAxis.length; i++) {
+        graphXAxisRender.push(this.props.updatedBudget.graphXAxis[i])
+      }
+
+      for (let i = 0; i < this.props.updatedBudget.graphData.length; i++) {
+        graphDataRender.push(this.props.updatedBudget.graphData[i])
+      }
+
     
   
       let budgetData = {
-        labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        labels: graphXAxisRender,
          //labels: this.props.budget.budget.data.expenses.map((category, index) => index),
         datasets: [{
           label: ["Savings Growth"],
-          data: [0, 2500, 5000, 7500, 10000, 12500, 15000, 17500, 20000, 22500, 25000],
+          data: graphDataRender,
           // this.props.,
           fill: true,
           borderColor: "#1b42df",
@@ -144,62 +152,62 @@ class SavingsPlan extends Component {
                   
                   <div className="form-check">
                     <label className="form-check-label" >
-                      <input className="form-check-input" type="checkbox" value="Mortgage" id="defaultCheck1" onChange={event => {this.toggleExpense(event)}}/>
-                      Mortgage
+                      <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[0].category} id="defaultCheck1" onChange={event => {this.toggleExpense(event)}}/>
+                      {this.props.updatedBudget.budget.expenses[0].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Auto Loan" id="defaultCheck2" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[1].category} id="defaultCheck2" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                      Auto Loan
+                    {this.props.updatedBudget.budget.expenses[1].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Utilities" id="defaultCheck3" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[2].category} id="defaultCheck3" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                      Utilities
+                    {this.props.updatedBudget.budget.expenses[2].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Groceries" id="defaultCheck4" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[3].category} id="defaultCheck4" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                      Groceries
+                    {this.props.updatedBudget.budget.expenses[3].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Gasoline" id="defaultCheck5" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[4].category} id="defaultCheck5" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                      Gasoline
+                    {this.props.updatedBudget.budget.expenses[4].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Restaurants" id="defaultCheck6" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[5].category} id="defaultCheck6" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                      Restaurants
+                    {this.props.updatedBudget.budget.expenses[5].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Entertainment" id="defaultCheck7" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[6].category} id="defaultCheck7" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                      Entertainment
+                    {this.props.updatedBudget.budget.expenses[6].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Clothing" id="defaultCheck8" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[7].category} id="defaultCheck8" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                      Clothing
+                    {this.props.updatedBudget.budget.expenses[7].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Cell Phone" id="defaultCheck9" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[8].category} id="defaultCheck9" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                       Cell Phone
+                    {this.props.updatedBudget.budget.expenses[8].category}
                     </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="checkbox" value="Gym Membership" id="defaultCheck10" onChange={event => {this.toggleExpense(event)}}/>
+                    <input className="form-check-input" type="checkbox" value={this.props.updatedBudget.budget.expenses[9].category} id="defaultCheck10" onChange={event => {this.toggleExpense(event)}}/>
                     <label className="form-check-label" >
-                      Gym Membership
+                    {this.props.updatedBudget.budget.expenses[9].category}
                     </label>
                   </div>
                 <br></br>
@@ -213,9 +221,16 @@ class SavingsPlan extends Component {
     
     render() {
 
-      console.log("this is updated budget", this.props.updatedBudget)
+      
 
-      if(this.props.updatedBudget) {
+      
+
+      if(!this.props.updatedBudget) {
+        return (
+          <h2>Loading..</h2>
+        )
+      } else {
+        console.log("this is updated x axis", this.props.updatedBudget.graphXAxis.length) 
       
       let budgetOptions = {
         title: {
@@ -253,7 +268,7 @@ class SavingsPlan extends Component {
                     <br></br>
                     <div className="row">
                         <div className="savings-summary">
-                            <h6 className="summary-text">With a monthly income of $<span className="income">{this.props.updatedBudget.budget.incomeAmount}</span>, and monthly expenses of $<span className="expences">3500</span>, you will reach your savings goal of $<span className="goal">25000</span> in <span className="months">10</span> months.</h6>
+                            <h6 className="summary-text">With a monthly income of $<span className="income">{this.props.updatedBudget.budget.incomeAmount}</span>, and monthly expenses of $<span className="expences">{this.props.updatedBudget.expenseTotal}</span>, you will reach your savings goal of $<span className="goal">{this.props.updatedBudget.budget.goalAmount}</span> in <span className="months">{this.props.updatedBudget.monthsToSave}</span> months.</h6>
                         </div>
                     </div>
           
@@ -261,8 +276,7 @@ class SavingsPlan extends Component {
         </div>
         
       );
-      } else {
-        <h2>loading.....</h2>
+      
       }
     }
   }

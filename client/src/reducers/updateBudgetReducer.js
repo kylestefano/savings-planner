@@ -1,7 +1,7 @@
-import { CREATE_BUDGET, GET_BUDGET, UPDATE_BUDGET } from '../actions/index';
+import { GET_BUDGET } from '../actions/index';
 
 
-export default function(state = {}, action) {
+export default function(state = null, action) {
   
   switch (action.type) {
     
