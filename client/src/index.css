@@ -17,3 +17,28 @@
 #amount-text {
     margin: 5px; 
 }
+
+.graph-header {
+    text-align: center;
+}
+
+.income {
+    color: #36cf3c;
+}
+
+.expences {
+    color: #f50d16;
+}
+
+.goal {
+    color: #1b42df;
+}
+
+.months {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.summary-text {
+    font-size: larger;
+}

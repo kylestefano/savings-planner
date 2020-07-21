@@ -262,10 +262,10 @@ class BudgetPlanner extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm">
-              <div className="graph-header">
+              <div className="graph-header text-center">
                <h3>Savings Plan</h3>
               </div>
-              <div className="savings-graph">
+              <div className="savings-graph text-center" align="center">
                {this.renderGraph()}
               </div>
             </div>
